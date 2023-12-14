@@ -2,7 +2,6 @@
 import { Command } from "commander";
 import { pars } from "../src/parser.js"
 
-
 const program = new Command();
 
 program
@@ -14,6 +13,7 @@ program
   .helpOption('-h, --help', 'output usage information')
   .option("-f, --format <type>", "output format")
   .action((path1, path2) => {
-    pars(path1, path2)
+    pars(path1)
+    pars(path2)
   }) 
 program.parse();
