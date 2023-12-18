@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Command } from "commander";
-import { pars } from "../src/parser.js"
+import genDiff from "../src/index.js";
 
 const program = new Command();
 
@@ -13,7 +13,6 @@ program
   .helpOption('-h, --help', 'output usage information')
   .option("-f, --format <type>", "output format")
   .action((path1, path2) => {
-    pars(path1)
-    pars(path2)
+   genDiff(path1, path2)
   }) 
 program.parse();

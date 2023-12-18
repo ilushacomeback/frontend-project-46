@@ -1,29 +1,13 @@
-import fs from "fs";
-import process from "node:process";
-import path from "path";
 import YAML from "yaml";
 
-const getExtension = (file) => {
-  const normalizeFile = file.split(".");
-  return normalizeFile[normalizeFile.length - 1];
-};
-const getPath = (pathToFile) => path.resolve(process.cwd(), pathToFile);
-
-const pars = (file) => {
-  const normalizePath1 = getPath(file);
-  const readFile = fs.readFileSync(normalizePath1, {
-    encoding: "utf8",
-  });
-
-  if (getExtension(file) === "json") {
-    JSON.parse(readFile);
-    console.log(JSON.parse(readFile));
+const parser = (file, format) => {
+  if (format === "json") {
+    const jsonParse = JSON.parse(file);
+    return jsonParse;
   }
-  if (getExtension(file) === "yaml") {
-    YAML.parse(readFile);
-    console.log(YAML.parse(readFile));
+  if (format === "yaml") {
+    const yamlParse = YAML.parse(file);
+    return yamlParse;
   }
 };
-export { pars };
-// gendiff ./__fixtures__/file1.json ./__fixtures__/file2.json
-// gendiff /mnt/c/Users/USER/Desktop/frontend-project-46/__fixtures__/file1.json /mnt/c/Users/USER/Desktop/frontend-project-46/__fixtures__/file2.json
+export default parser ;
