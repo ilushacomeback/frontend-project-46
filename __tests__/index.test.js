@@ -1,4 +1,5 @@
-import genDiff from "../src/index.js";
+/* eslint-env jest */
+import genDiff from '../src/index.js';
 
 const res = `{
 \t- follow: false
@@ -9,8 +10,8 @@ const res = `{
 \t+ verbose: true
 }`;
 
-test("work", () => {
+test('work', () => {
   expect(
-    genDiff("./__fixtures__/file1.json", "./__fixtures__/file2.json")
+    genDiff('./__fixtures__/file1.json', './__fixtures__/file2.json'),
   ).toEqual(res);
 });

@@ -1,12 +1,12 @@
-import fs from "fs";
-import process from "node:process";
-import path from "path";
-import _ from "lodash";
-import parser from "./parser.js";
+import fs from 'fs';
+import process from 'node:process';
+import path from 'path';
+import _ from 'lodash';
+import parser from './parser.js';
 
-const getExtension = (file) => file.split(".").at(-1);
+const getExtension = (file) => file.split('.').at(-1);
 const getPath = (pathToFile) => path.resolve(process.cwd(), pathToFile);
-const readFile = (pathToFile) => fs.readFileSync(getPath(pathToFile), "utf-8");
+const readFile = (pathToFile) => fs.readFileSync(getPath(pathToFile), 'utf-8');
 
 const genDiff = (filePath1, filePath2) => {
   const file1 = parser(readFile(filePath1), getExtension(filePath1));
@@ -16,11 +16,10 @@ const genDiff = (filePath1, filePath2) => {
       if (Object.hasOwn(file1, key) && Object.hasOwn(file2, key)) {
         if (file1[key] === file2[key]) {
           return `\t  ${key}: ${file1[key]}`;
-        } else {
-          const one = `\t- ${key}: ${file1[key]}`
-          const two = `\t+ ${key}: ${file2[key]}`
-          return `${one}\n${two}`;
         }
+        const one = `\t- ${key}: ${file1[key]}`;
+        const two = `\t+ ${key}: ${file2[key]}`;
+        return `${one}\n${two}`;
       }
       if (Object.hasOwn(file1, key) && !Object.hasOwn(file2, key)) {
         return `\t- ${key}: ${file1[key]}`;
@@ -28,9 +27,10 @@ const genDiff = (filePath1, filePath2) => {
       if (!Object.hasOwn(file1, key) && Object.hasOwn(file2, key)) {
         return `\t+ ${key}: ${file2[key]}`;
       }
-    }
+      return null;
+    },
   );
-  console.log(`{\n${keys.join("\n")}\n}`);
-  return `{\n${keys.join("\n")}\n}`;
+  console.log(`{\n${keys.join('\n')}\n}`);
+  return `{\n${keys.join('\n')}\n}`;
 };
 export default genDiff;

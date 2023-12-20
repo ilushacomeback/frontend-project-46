@@ -9,5 +9,6 @@ const parser = (file, format) => {
     const yamlParse = YAML.parse(file);
     return yamlParse;
   }
+  return null;
 };
 export default parser;
