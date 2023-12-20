@@ -8,3 +8,6 @@
 
 ### Maintainability
 [![Maintainability](https://api.codeclimate.com/v1/badges/072cb709d2aab9f84a61/maintainability)](https://codeclimate.com/github/ilushacomeback/frontend-project-46/maintainability)
+
+### Test-coverage
+[![Test Coverage](https://api.codeclimate.com/v1/badges/072cb709d2aab9f84a61/test_coverage)](https://codeclimate.com/github/ilushacomeback/frontend-project-46/test_coverage)
