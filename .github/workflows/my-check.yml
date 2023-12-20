@@ -9,7 +9,7 @@ jobs:
       - run: npx eslint .
       - run: npx jest
       - name: Test & publish code coverage
-        uses: paambaati/codeclimate-action@v4.0.0
+        uses: paambaati/codeclimate-action@v5.0.0
         env:
           CC_TEST_REPORTER_ID: 00a5462e40ff3301da4192784f755e090bc1c4fe88c9c677149e9437094ad43d
         with:

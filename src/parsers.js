@@ -1,4 +1,4 @@
-import yaml from 'js-yaml'
+import yaml from 'js-yaml';
 
 const parser = (file, format) => {
   if (format === '.json') {
