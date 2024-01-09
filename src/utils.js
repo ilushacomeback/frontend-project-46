@@ -8,46 +8,47 @@ const readFile = (pathToFile) => fs.readFileSync(getPath(pathToFile), 'utf-8');
 
 const getDiff = (data1, data2) => {
   const keysData = _.sortBy(_.union(Object.keys(data1), Object.keys(data2)))
-  .map((key) => {
-    const oldValue = data1[key]
-    const newValue = data2[key]
-    if (!Object.hasOwn(data1, key)) {
-      return {
-        action: 'added',
-        key,
-        newValue
+    .map((key) => {
+      const oldValue = data1[key];
+      const newValue = data2[key];
+      if (!Object.hasOwn(data1, key)) {
+        return {
+          action: 'added',
+          key,
+          newValue,
+        };
       }
-    }
-    if (!Object.hasOwn(data2, key)) {
-      return {
-        action: 'deleted',
-        key,
-        oldValue
+      if (!Object.hasOwn(data2, key)) {
+        return {
+          action: 'deleted',
+          key,
+          oldValue,
+        };
       }
-    }
-    if (_.isObject(oldValue) && _.isObject(newValue)) {
-      return {
-        action: 'nested',
-        key,
-        children: getDiff(oldValue, newValue)
+      if (_.isObject(oldValue) && _.isObject(newValue)) {
+        return {
+          action: 'nested',
+          key,
+          children: getDiff(oldValue, newValue),
+        };
       }
-    }
-    if (oldValue !== newValue) {
-      return {
-        action: 'changed',
-        key,
-        oldValue,
-        newValue
+      if (oldValue !== newValue) {
+        return {
+          action: 'changed',
+          key,
+          oldValue,
+          newValue,
+        };
       }
-    }
-    if (oldValue === newValue) {
-      return {
-        action: 'unchanged',
-        key,
-        oldValue
+      if (oldValue === newValue) {
+        return {
+          action: 'unchanged',
+          key,
+          oldValue,
+        };
       }
-    }
-  })
-  return keysData
-}
-export { readFile, getDiff }
+      return null;
+    });
+  return keysData;
+};
+export { readFile, getDiff };

@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import genDiff from "../src/index.js";
+import genDiff from '../src/index.js';
 
 const res = `{
   - follow: false
@@ -10,8 +10,7 @@ const res = `{
   + verbose: true
 }`;
 
-const res2 =
-`{
+const res2 = `{
     common: {
       + follow: false
         setting1: Value 1
@@ -56,20 +55,20 @@ const res2 =
     }
 }`;
 
-test("work", () => {
+test('work', () => {
   expect(
-    genDiff("./__fixtures__/file1.json", "./__fixtures__/file2.json")
+    genDiff('./__fixtures__/file1.json', './__fixtures__/file2.json'),
   ).toEqual(res);
   expect(
-    genDiff("./__fixtures__/file1.yaml", "./__fixtures__/file2.yaml")
+    genDiff('./__fixtures__/file1.yaml', './__fixtures__/file2.yaml'),
   ).toEqual(res);
 });
 
-test("work2", () => {
+test('work2', () => {
   expect(
-    genDiff("./__fixtures__/filepath1.json", "./__fixtures__/filepath2.json")
+    genDiff('./__fixtures__/filepath1.json', './__fixtures__/filepath2.json'),
   ).toEqual(res2);
   expect(
-    genDiff("./__fixtures__/filepath1.yml", "./__fixtures__/filepath2.yml")
+    genDiff('./__fixtures__/filepath1.yml', './__fixtures__/filepath2.yml'),
   ).toEqual(res2);
 });
