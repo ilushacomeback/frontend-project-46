@@ -11,8 +11,8 @@ program
   .argument('<filepath2.json>', 'второй файл')
   .option('-v, --version', 'output the version number')
   .helpOption('-h, --help', 'output usage information')
-  .option('-f, --format <type>', 'output format')
-  .action((path1, path2) => {
-    genDiff(path1, path2);
+  .option('-f, --format <type>', 'output format (default: "stylish")')
+  .action((path1, path2, option) => {
+    console.log(genDiff(path1, path2, option.format));
   });
 program.parse();

@@ -8,7 +8,7 @@ const parser = (file, format) => {
     case '.yml':
       return yaml.load(file);
     default:
-      throw new Error(`Format file ${file} is not correct`);
+      throw new Error(`Format file ${file} is not correct :(`);
   }
 };
 export default parser;
